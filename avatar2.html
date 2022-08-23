@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf8">
+    <meta name="viewport" content="width=devive-width,
+    initial-scale=1">
+    <title>
+        Canvas
+    </title>
+    <style type="text/css">
+        canvas{
+            background-color: rgb(163, 199, 223);
+    }
+    </style>
+    
+</head>
+<body>
+    <canvas id="mycanvas" width="1000" height="950">
+        Hola tu navegador no funciona
+    </canvas>
+
+    <script type="text/javascript">
+        var cv = document.getElementById('mycanvas');
+        var ctx = cv.getContext('2d');
+
+        //cabeza
+        ctx.beginPath();
+        ctx.arc(200, 180, 95, 0, 2*Math.PI)
+        ctx.fillStyle = "rgb(251, 197, 167)"
+        ctx.fill();
+
+        //ojos
+        ctx.beginPath();
+        ctx.arc(240, 180, 10, 0, 2*Math.PI)
+        ctx.fillStyle = "rgb(0,0,0)"
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(165, 180, 10, 0, 2*Math.PI)
+        ctx.fillStyle = "rgb(0,0,0)"
+        ctx.fill();
+
+        //boca
+        ctx.fillStyle = "rgb(0,0,0)";
+        ctx.fillRect(160,225,80,10);
+
+        //Gorra
+        ctx.beginPath();
+        ctx.arc(200, 150,100,3* Math.PI, 2 * Math.PI)
+        ctx.fillStyle = "rgb(0,0,255)"
+        ctx.fill();
+
+        ctx.fillStyle = "rgb(0,0,255)";
+        ctx.fillRect(200,130,200,20);
+
+        //cuello
+        ctx.fillStyle = "rgb(251, 197, 167)";
+        ctx.fillRect(165,250,70,40);
+
+        //Cuerpo
+        ctx.fillStyle = "rgb(155, 155, 155)";
+        ctx.fillRect(115,280,175,300);
+
+        //brazos
+        ctx.fillStyle = "rgb(0, 0, 255)";
+        ctx.fillRect(100,280,40,220);
+
+        ctx.fillStyle = "rgb(0, 0, 255)";
+        ctx.fillRect(280,280,40,220);
+
+        //manos
+        ctx.beginPath();
+        ctx.arc(300, 500, 25, 0, 1*Math.PI)
+        ctx.fillStyle = "rgb(251, 197, 167)"
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(120, 500, 25, 0, 1*Math.PI)
+        ctx.fillStyle = "rgb(251, 197, 167)"
+        ctx.fill();
+
+        //piernas
+        ctx.fillStyle = "rgb(0, 0, 0)";
+        ctx.fillRect(150,575,100,40);
+
+        ctx.fillStyle = "rgb(0, 0, 0)";
+        ctx.fillRect(115,575,75,220);
+
+        ctx.fillStyle = "rgb(0, 0, 0)";
+        ctx.fillRect(215,575,75,220);
+
+        //calzado
+        ctx.fillStyle = "rgb(255, 255, 255)";
+        ctx.fillRect(90,780,100,50);
+
+        ctx.fillStyle = "rgb(255, 255, 255)";
+        ctx.fillRect(215,780,100,50);
+
+
+        // ctx.beginPath();
+        // ctx.arc(100, 150, 75, 8, 2*Math.PI)
+        // ctx.fillStyle = "rgb(247, 220, 199)"
+        // ctx.fill();
+
+        
+
+        
+     </script>
+
+</body>
+</html>
