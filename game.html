@@ -38,6 +38,9 @@
         var speed = 2
         var score = 0
         var pause = false
+        var playe = new Image()
+        var apple = new Image()
+        var sonido = new Audio()
 
         document.addEventListener('keydown',function(e){
             console.log(e);
@@ -79,8 +82,8 @@
             ctx.fillStyle = "white";
             ctx.fillText("SCORE: "+score,250,250);
 
-            player1.pintar(ctx)
-            player2.pintar(ctx)
+            ctx.drawImage(playe, player1.x, player1.y)
+            ctx.drawImage(apple, player2.x, player2.y)
 
             pared[0].pintar(ctx)
             pared[1].pintar(ctx)
@@ -161,6 +164,7 @@
                 player2.x = getRandom(1000)
                 player2.y = getRandom(800)
                 score += 1
+                sonido.play()
             }
 
 
@@ -232,6 +236,11 @@
             pared[1] = new Cuadro(50,200,25,500,"gray")
             pared[2] = new Cuadro(200,600,500,25,"gray")
             pared[3] = new Cuadro(800,150,25,500,"gray")
+
+            playe.src = "fantasma.png"
+            apple.src = "apple.png"
+            sonido.src = "mario-bros vida.mp3"
+
 
             paint()
         }
