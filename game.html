@@ -33,12 +33,14 @@
         var super_y = 0;   
         var player1 = null
         var player2 = null
+        var pared = [4]
         var direccion = "right"
         var speed = 2
         var score = 0
+        var pause = false
 
         document.addEventListener('keydown',function(e){
-            console.log(e)
+            console.log(e);
 
             if(e.key == "w" || e.key == "ArrowUp"){
                 // super_y -= 5;
@@ -59,12 +61,16 @@
                 // super_x += 5;
                 direccion = "right"
             }
-            paint();
+            if(e.keyCode == 32){
+                pause = (pause)?false:true
+            }
+            // paint();
         })
 
         function paint(){
             window.requestAnimationFrame(paint)
 
+            console.log(player1.x + ", " + player1.y);
             ctx.fillStyle = "blue";
             ctx.fillRect(0,0,1000,800);
             // ctx.fillStyle = randomColor();
@@ -76,39 +82,79 @@
             player1.pintar(ctx)
             player2.pintar(ctx)
 
-            update()
+            pared[0].pintar(ctx)
+            pared[1].pintar(ctx)
+            pared[2].pintar(ctx)
+            pared[3].pintar(ctx)
+
+            if(pause){
+                ctx.fillStyle = "rgba(0,0,0,0.5)";
+                ctx.fillRect(0,0,0,500,500);
+
+                ctx.fillStyle = "white"
+                ctx.fillText('P A U S E', 230,230)
+            }else{
+                update()
+            }
+
+            // update()
             
         }
 
         function update(){
-
+            
             if(direccion == "up"){
                 player1.y -= speed
                 if(player1.y<0){
                     player1.y = 800;
                 }
             }
-
+    
             if(direccion == "down"){
                 player1.y += speed
                 if(player1.y>800){
                     player1.y = 0;
                 }
             }
-
+    
             if(direccion == "left"){
                 player1.x -= speed
                 if(player1.x<0){
                     player1.x = 1000;
                 }
             }
-
+    
             if(direccion == "right"){
                 player1.x += speed
                 if(player1.x>1000){
                     player1.x = 0;
                 }
             }
+            for( var x = 0; x < pared.length; x++){
+                if (player1.se_tocan(pared[x])){
+                    if(direccion == "up"){
+                    player1.y += speed
+                    }
+                    if(direccion == "down"){
+                        player1.y -= speed
+                
+                    }
+
+                    if(direccion == "left"){
+                        player1.x += speed
+                
+                    }
+
+                    if(direccion == "right"){
+                        player1.x -= speed
+                    }
+
+            
+                
+                }
+            }
+            
+
 
 
             if(player1.se_tocan(player2)){
@@ -118,6 +164,7 @@
             }
 
 
+            
 
             // player1.x+=2;  
 
@@ -180,6 +227,11 @@
 
             player1 = new Cuadro(0,0,40,40, "red")
             player2 = new Cuadro(getRandom(1000),getRandom(800), 40, 40, "white")
+
+            pared[0] = new Cuadro(100,100,500,25,"gray")
+            pared[1] = new Cuadro(50,200,25,500,"gray")
+            pared[2] = new Cuadro(200,600,500,25,"gray")
+            pared[3] = new Cuadro(800,150,25,500,"gray")
 
             paint()
         }
